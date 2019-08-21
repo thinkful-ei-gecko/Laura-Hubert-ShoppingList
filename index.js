@@ -4,37 +4,39 @@
 //.submit(), preventDefault(), toggleClass(), and closest().
 
 function addItem() {
+  //shoppingInput.on('click', function(item) {})
+  $('form').submit(function(event) {
+    event.preventDefault(); // prevents submit button from executing default action
+
     const shoppingInput = $('#shopping-list-entry').val();
-    //shoppingInput.on('click', function(item) {})
-    $('form').submit(function(event) {
-        event.preventDefault(); // prevents submit button from executing default action
-        $('.shopping-list').append(`
-        <li>
-        <span class="shopping-item">${shoppingInput}</span>
-        <div class="shopping-item-controls">
-          <button class="shopping-item-toggle">
-            <span class="button-label">check</span>
-          </button>
-          <button class="shopping-item-delete">
-            <span class="button-label">delete</span>
-          </button>
-        </div>
-      </li>
-      `)
-    })
-};
+  
+    $('.shopping-list').append(`
+      <li>
+      <span class="shopping-item">${shoppingInput}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle">
+          <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete">
+          <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>
+    `);
+  });
+}
 
 function removeItem() {
-    $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
-        $(this).closest('li').remove();
-    });
+  $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
+    $(this).closest('li').remove();
+  });
 }
 
 //strikes a line through the shopping list item
 function checkItem() {
-    $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
-        $(this).closest('li').find('span.shopping-item').toggleClass('shopping-item__checked');
-    })
+  $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
+    $(this).closest('li').find('span.shopping-item').toggleClass('shopping-item__checked');
+  });
 }
 
 $(addItem);
